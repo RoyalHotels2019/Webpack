@@ -1,12 +1,16 @@
-interface Person {
-    firstName: string;
-    lastName: string;
-}
+import axios, {
+    AxiosResponse,
+    AxiosError
+} from "../../node_modules/axios/index";
 
-function greeter(person: Person): string {
-    return "Hello, " + person.firstName + " " + person.lastName;
-}
-let user: Person = { firstName: "John", lastName: "Doe" };
+let uri: string = "localhost:50182/api/hoteltemps";
 
-let element: HTMLDivElement = <HTMLDivElement> document.getElementById("content");
-element.innerHTML = greeter(user);
+let thing: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
+
+axios.get(uri)
+    .then(function (response: AxiosResponse): void {
+        thing.innerHTML = JSON.stringify(response.data);
+    })
+    .catch(function (error: AxiosError): void {
+        thing.innerHTML = "hej" + error.message + error.name;
+    });
