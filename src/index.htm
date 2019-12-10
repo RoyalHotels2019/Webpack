@@ -10,6 +10,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="bundle.css">
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+  </style>
 
 
 
@@ -19,11 +24,13 @@
 <body style="background-color:skyblue">
 
   <div class="container">
+    <!--Titel/By-->
     <div class="row">
       <div style="text-align: center;">
         <h1>Royal Hotel Roskilde</h1>
       </div>
     </div>
+    <!--temperaturvisning-->
     <div class="row">
       <div class="col-sm-5"></div>
       <div class="jumbotron col-sm-2">
@@ -31,14 +38,42 @@
       </div>
       <div class="col-sm-5"></div>
     </div>
+    <!--3'rd party api-->
     <div class="row">
-      <p>Temperaturen I roskilde er:</p><p></p>
+      <p>Temperaturen I roskilde er:</p>
+      <p></p>
     </div>
     <div class="row">
     </div>
-  <div id="content"></div>
+    <div id="content"></div>
+    <!--Knapper til historisk temperatur visning-->
+    <div>
+      <button type="button">Click Me1!</button>
+      <button type="button">Click Me2!</button>
+      <button type="button">Click Me3!</button>
+      <button type="button">Click Me4!</button>
+      <button type="button">Click Me5!</button>
+    </div>
+    <!--Tabel visning af temperaturer-->
+    <div>
+      <table style="width:100%">
+        <tr>
+          <th>Dage bagud</th>
+          <th>temperatur</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>9</td>
+        </tr>
+      </table> 
+    </div>
   </div>
 
   <script src="bundle.js"></script>
 </body>
+
 </html>
