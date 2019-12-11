@@ -4,9 +4,11 @@ import axios, {
 } from "../../node_modules/axios/index";
 
 let uri: string = "http://localhost:50182/api/hoteltemps";
+let treuri: string ="http://vejr.eu/api.php?location=Roskilde&degree=C";
 
 
 let OurTempOutput: HTMLDivElement = <HTMLDivElement>document.getElementById("OurTempOutput");
+let treTempOutput: HTMLDivElement = <HTMLDivElement>document.getElementById("3rd")
 let historik: HTMLDivElement = <HTMLDivElement>document.getElementById("historik");
 
 let knap7element: HTMLButtonElement = <HTMLButtonElement>document.getElementById("knap7");
@@ -29,6 +31,29 @@ interface ITemperature
     datoTid: Date;
     temperature: number;
 }
+
+interface Ivejreu
+{
+    LocationName: string;
+    CurrentData: CurrentData;
+}
+
+interface CurrentData
+{
+    temperature: number;
+    skyText: string;
+    humidity: number;
+    windText: string;
+}
+
+axios.get<Ivejreu>(treuri)
+    .then(function (response: AxiosResponse<Ivejreu>): void {
+        treTempOutput.innerHTML=response.data.CurrentData.temperature.toString()+"°";
+    })
+    .catch(function (error: AxiosError): void {
+        treTempOutput.innerHTML = error.message;
+    });
+
 
 axios.get<ITemperature>(uri+"/recent")
     .then(function (response: AxiosResponse<ITemperature>): void {
