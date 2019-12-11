@@ -30,6 +30,7 @@ axios.get(uri+"/recent")
 
 axios.get(uri)
     .then(function (response: AxiosResponse): void {
+        thing.innerHTML = JSON.stringify(response.data);
         let result: string = "<table>";
             response.data.forEach((temp: ITemperature) => {
                 result += "<tr><td>" + temp.datoTid + "</td><td>" + temp.temperature + "</td></tr>";
