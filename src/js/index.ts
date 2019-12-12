@@ -75,7 +75,7 @@ axios.get(uri)
         
         let result: string = "<table>";
             response.data.forEach((temp: ITemperature) => {
-                result += "<tr><td>" + temp.datoTid + "</td><td>" + temp.temperature + "</td></tr>";
+                result += "<tr><td>" + temp.temperature + "</td><td>" + temp.datoTid + "</td></tr>";
             });
             result += "</table>";
         historik.innerHTML = result;
