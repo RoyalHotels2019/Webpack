@@ -4,7 +4,7 @@ import axios, {
 } from "../../node_modules/axios/index";
 
 let uri: string = "http://localhost:50182/api/hoteltemps";
-let treuri: string ="http://vejr.eu/api.php?location=Roskilde&degree=C";
+let treuri: string ="http://api.openweathermap.org/data/2.5/weather?q=Roskilde%20Kommune,DK&APPID=16d519bf2dbe0d141edfdaca3b1d0d01";
 
 
 let OurTempOutput: HTMLDivElement = <HTMLDivElement>document.getElementById("OurTempOutput");
@@ -31,24 +31,46 @@ interface ITemperature
     datoTid: Date;
     temperature: number;
 }
-
-interface Ivejreu
+interface IOpenweather
 {
-    LocationName: string;
-    CurrentData: CurrentData;
+    main: IMain;
+}
+interface IMain
+{
+    temp: number
 }
 
-interface CurrentData
-{
-    temperature: number;
-    skyText: string;
-    humidity: number;
-    windText: string;
-}
 
-axios.get<Ivejreu>(treuri)
-    .then(function (response: AxiosResponse<Ivejreu>): void {
-        treTempOutput.innerHTML=response.data.CurrentData.temperature.toString()+"°";
+//{
+//    "coord": { "lon": 145.77, "lat": -16.92 },
+//    "weather": [{ "id": 802, "main": "Clouds", "description": "scattered clouds", "icon": "03n" }],
+//    "base": "stations",
+//    "main": { "temp": 300.15, "pressure": 1007, "humidity": 74, "temp_min": 300.15, "temp_max": 300.15 },
+//    "visibility": 10000,
+//    "wind": { "speed": 3.6, "deg": 160 },
+//    "clouds": { "all": 40 },
+//    "dt": 1485790200,
+//    "sys":
+//    {
+//            "type": 1, "id": 8166,
+//            "message": 0.2064,
+//            "country": "AU",
+//            "sunrise": 1485720272,
+//            "sunset": 1485766550
+//    },
+//    "id": 2172797,
+//    "name": "Cairns",
+//     "cod": 200
+//}
+
+
+
+
+axios.get<IOpenweather>(treuri)
+    .then(function (response: AxiosResponse<IOpenweather>): void {
+        let temperature: number = response.data.main.temp - 273.15;
+        let temp: string = temperature.toFixed(2);
+        treTempOutput.innerHTML = " " + temp + "° c";
     })
     .catch(function (error: AxiosError): void {
         treTempOutput.innerHTML = error.message;
@@ -64,7 +86,7 @@ axios.get<ITemperature>(uri+"/recent")
         //resultTwo +='';
         //resultTwo += '</h1>'
         //OurTempOutput.innerHTML = resultTwo;
-        OurTempOutput.innerHTML=response.data.temperature.toString()+"°";
+        OurTempOutput.innerHTML=response.data.temperature.toString()+"° c";
     })
     .catch(function (error: AxiosError): void {
         OurTempOutput.innerHTML = error.message;
