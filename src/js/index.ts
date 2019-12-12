@@ -74,8 +74,9 @@ axios.get(uri)
     .then(function (response: AxiosResponse): void {
         
         let result: string = "<table>";
-            response.data.forEach((temp: ITemperature) => {
-                result += "<tr><td>" + temp.temperature + "</td><td>" + temp.datoTid + "</td></tr>";
+        result += "<th>Temperatur</th><th>Dato</th>";
+        response.data.forEach((temp: ITemperature) => {
+            result += "<tr><td>" + temp.temperature + "°c" + "</td><td>" + temp.datoTid + "</td></tr>";
             });
             result += "</table>";
         historik.innerHTML = result;
@@ -99,4 +100,10 @@ function knap30click(): void{
 
 function knap60click(): void{
     window.alert("knap 60 ikke implementeret endnu")
+}
+
+function toDateString(date: Date): string {
+    let result: string;
+    result = date.getDate + "/" + date.getMonth + "/" + date.getFullYear;
+    return result;
 }
