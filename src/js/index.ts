@@ -82,7 +82,7 @@ axios.get(uri)
         
     })
     .catch(function (error: AxiosError): void {
-        historik.innerHTML = "hej" + error.message;
+        historik.innerHTML = "hej: " + error.message;
     });
 
 function knap7click(): void{
