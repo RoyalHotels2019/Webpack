@@ -73,10 +73,10 @@ axios.get<ITemperature>(uri+"/recent")
 axios.get(uri)
     .then(function (response: AxiosResponse): void {
         
-        let result: string = "<table>";
-        result += "<th>Temperatur</th><th>Dato</th>";
+        let result: string = "<table cellpadding='10'>";
+        result += "<th>Temperatur</th><th align='center'>Dato</th>";
         response.data.forEach((temp: ITemperature) => {
-            result += "<tr><td>" + temp.temperature + "°c" + "</td><td>" + temp.datoTid + "</td></tr>";
+            result += "<tr><td align='center'>" + temp.temperature + "°c" + "</td><td>" + temp.datoTid + "</td></tr>";
             });
             result += "</table>";
         historik.innerHTML = result;
