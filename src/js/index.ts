@@ -40,6 +40,13 @@ interface IMain
     temp: number
 }
 
+function IDato(datoTid: Date): string
+{
+    let year: number = datoTid.getFullYear();
+    
+    return datoTid.toString();
+}
+
 
 //{
 //    "coord": { "lon": 145.77, "lat": -16.92 },
@@ -70,7 +77,7 @@ axios.get<IOpenweather>(treuri)
     .then(function (response: AxiosResponse<IOpenweather>): void {
         let temperature: number = response.data.main.temp - 273.15;
         let temp: string = temperature.toFixed(2);
-        treTempOutput.innerHTML = " " + temp + "° c";
+        treTempOutput.innerHTML = " " + temp + "° C";
     })
     .catch(function (error: AxiosError): void {
         treTempOutput.innerHTML = error.message;
@@ -96,9 +103,9 @@ axios.get(uri)
     .then(function (response: AxiosResponse): void {
         
         let result: string = "<table cellpadding='10'>";
-        result += "<th>Temperatur</th><th align='center'>Dato</th>";
+        result += "<th>Temperatur</th><th align=\"center\">Dato</th>";
         response.data.forEach((temp: ITemperature) => {
-            result += "<tr><td align='center'>" + temp.temperature + "°c" + "</td><td>" + temp.datoTid + "</td></tr>";
+            result += "<tr><td align='center'>" + temp.temperature + "°C" + "</td><td>" + IDato(temp.datoTid) + "</td></tr>";
             });
             result += "</table>";
         historik.innerHTML = result;
