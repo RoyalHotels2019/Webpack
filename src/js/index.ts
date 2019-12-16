@@ -42,7 +42,7 @@ interface IMain
 
 function IDato(datoTid: Date): string
 {
-    let year: number = datoTid.getFullYear();
+    //let year: number = datoTid.getFullYear();
     
     return datoTid.toString();
 }
