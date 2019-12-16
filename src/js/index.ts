@@ -77,7 +77,7 @@ axios.get<IOpenweather>(treuri)
     .then(function (response: AxiosResponse<IOpenweather>): void {
         let temperature: number = response.data.main.temp - 273.15;
         let temp: string = temperature.toFixed(2);
-        treTempOutput.innerHTML = " " + temp + "° C";
+        treTempOutput.innerHTML = " " + temp + "°C";
     })
     .catch(function (error: AxiosError): void {
         treTempOutput.innerHTML = error.message;
@@ -93,7 +93,7 @@ axios.get<ITemperature>(uri+"/recent")
         //resultTwo +='';
         //resultTwo += '</h1>'
         //OurTempOutput.innerHTML = resultTwo;
-        OurTempOutput.innerHTML=response.data.temperature.toString()+"° c";
+        OurTempOutput.innerHTML=response.data.temperature.toString()+"°C";
     })
     .catch(function (error: AxiosError): void {
         OurTempOutput.innerHTML = error.message;
